@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+  <head>
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> -->
+    <link rel="stylesheet" href="../static/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <title>My Webpage</title>
+  </head>
+  <body ng-app="app">
+    <div class="container" ng-controller="MainController">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <!-- <div class="navbar-header">
+                    <a class="navbar-brand" href="#/">Navbar-brand</a>
+                </div> -->
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#/">Home</a></li>
+                        <li><a href="#/play">Add driver</a></li>
+                        <li><a href="#/about">List all drivers</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div id="container" ng-view></div>
+
+    <!-- angular specific -->
+    <script src="../static/bower_components/angular/angular.min.js"></script>
+    <script src="../static/bower_components/angular-route/angular-route.min.js"></script>
+    <script src="../static/bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
+    <!-- custom -->
+    <script src="../static/app.js"></script>
+  </body>
+</html>

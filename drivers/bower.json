@@ -1,0 +1,23 @@
+{
+  "name": "drivers",
+  "version": "0.0.1",
+  "authors": [
+    "Viktor Staykov <viktor.staikov@gmail.com>"
+  ],
+  "description": "hi there",
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "angular": "~1.4.2",
+    "angular-route": "~1.4.2",
+    "angular-local-storage": "~0.2.2"
+  }
+}
