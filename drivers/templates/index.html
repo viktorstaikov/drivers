@@ -3,6 +3,7 @@
   <head>
     <!-- <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> -->
     <link rel="stylesheet" href="../static/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    
     <link rel="stylesheet" href="../static/css/style.css">
     <title>My Webpage</title>
   </head>
@@ -16,8 +17,8 @@
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="#/">Home</a></li>
-                        <li><a href="#/play">Add driver</a></li>
-                        <li><a href="#/about">List all drivers</a></li>
+                        <li><a href="#/new-driver">Add driver</a></li>
+                        <li><a href="#/list-all-drivers">List all drivers</a></li>
                     </ul>
                 </div>
             </div>
@@ -29,7 +30,18 @@
     <script src="../static/bower_components/angular/angular.min.js"></script>
     <script src="../static/bower_components/angular-route/angular-route.min.js"></script>
     <script src="../static/bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
-    <!-- custom -->
+    <!-- jQuery -->
+    <script src="../static/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- bootstrap specific -->
+    <script src="../static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!--controllers-->
+    <script src="../static/home/MainCtrl.js"></script>
+    <script src="../static/drivers/NewDriverCtrl.js"></script>
+    <script src="../static/drivers/ListDriversCtrl.js"></script>
+     <!--services-->
+    <script src="../static/drivers/DriversService.js"></script>
+    <!--other-->
+    <script src="../static/js/appRoutes.js"></script>
     <script src="../static/app.js"></script>
   </body>
 </html>

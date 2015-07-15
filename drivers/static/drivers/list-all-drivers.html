@@ -1,0 +1,17 @@
+<section id="driversSection" class="col-sm-8 col-sm-offset-2">
+    <div ng-show="drivers.length > 0">
+        <h1>All drivers in the system </br><small>Some might not have their background check ready.</small></h1>
+        <ul class="list-group">
+            <li ng-repeat="driver in drivers" class="list-group-item">
+                <span>{{driver.name}} / {{driver.email}}</span>
+                <span class="badge">{{statusToText(driver)}}</span>
+                <a class="btn" ng-click="remove(driver)">Edit</a>
+                <a class="btn" ng-click="remove(driver, $index)">Remove</a>
+            </li>
+        </ul>
+    </div>
+    <div  ng-show="drivers.length == 0">
+        <h1>No drivers. </br><small>You might want to <a href="#/new-driver">add some</a>.</small></h1>
+    </div>
+</section>
+
