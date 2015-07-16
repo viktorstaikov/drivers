@@ -9,6 +9,8 @@
                 <a class="btn" ng-click="remove(driver, $index)">Remove</a>
             </li>
         </ul>
+        <a class="btn btn-primary" ng-click="export()">Export unchecked drivers</a>
+        <a class="btn btn-primary" ng-click="import()">Import results from background check</a>
     </div>
     <div  ng-show="drivers.length == 0">
         <h1>No drivers. </br><small>You might want to <a href="#/new-driver">add some</a>.</small></h1>

@@ -1,6 +1,5 @@
-angular.module('ListDriversCtrl', []).controller('ListDriversController', ['$scope', '$route', 'DriversService', function ($scope, $route, driversService) {
+angular.module('ListDriversCtrl', []).controller('ListDriversController', ['$scope', '$http', 'DriversService', function ($scope, $http, driversService) {
     $scope.errorMsg = '';
-
 
     $scope.statusToText = function (driver) {
         switch (driver.status) {
@@ -26,6 +25,14 @@ angular.module('ListDriversCtrl', []).controller('ListDriversController', ['$sco
 
     $scope.edit = function (driver) {
         console.log(driver);
+    }
+
+    $scope.export = function () {
+        window.open('/api/export/driver', '_blank', '');
+    }
+
+    $scope.import = function () {
+
     }
 
     driversService.getAll()
