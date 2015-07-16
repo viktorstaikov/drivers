@@ -61,16 +61,15 @@ def import_background_checks():
 
         print(str(clean))
 
-        now = datetime.now
+        now = datetime.now()
 
-        Driver.update(status=1, lastmodified=datetime.now).where(
-            Driver.id << clean).execute()
-        Driver.update(status=2, lastmodified=datetime.now).where(
-            Driver.id << discrepancy).execute()
-        Driver.update(status=3, lastmodified=datetime.now).where(
-            Driver.id << fake).execute()
+        Driver.update(status=1, lastmodified=datetime.now()).where(Driver.id << clean).execute()
+        Driver.update(status=2, lastmodified=datetime.now()).where(Driver.id << discrepancy).execute()
+        Driver.update(status=3, lastmodified=datetime.now()).where(Driver.id << fake).execute()
 
-        drivers = Driver.select(
-            Driver.id, Driver.name, Driver.status).where(Driver.lastmodified > now).dicts().execute().cursor.fetchall()
-        return make_response(str(drivers))
+        cursor = Driver.select(Driver.id, Driver.name, Driver.status).where(
+            Driver.lastmodified >= now).dicts().execute().cursor
+
+        drivers = [dict(id=row[0], name=row[1], status=row[2]) for row in cursor.fetchall()]
+        return make_response(json.dumps(drivers))
     return make_response("nope")
