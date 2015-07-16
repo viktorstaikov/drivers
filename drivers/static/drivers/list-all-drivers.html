@@ -1,6 +1,20 @@
 <section id="driversSection" class="col-sm-8 col-sm-offset-2">
-    <div ng-show="drivers.length > 0">
-        <h1>All drivers in the system </br><small>Some might not have their background check ready.</small></h1>
+    <div ng-show="drivers.length > 0" class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading">
+        <h2>All drivers in the system </br><small>Some might not have their background check ready.</small></h2>
+      </div>
+      <div class="panel-body">
+
+            <a class="btn" ng-click="export()">Export unchecked drivers</a>        
+            <div class="input-group pull-right">
+                <a class="btn" ng-click="import()">Import results from background check</a>
+                <input type="file" nv-file-select uploader="uploader" value="file"/>
+            </div>
+      </div>
+      
+        
+
         <ul class="list-group">
             <li ng-repeat="driver in drivers" class="list-group-item" >
                 <span>{{driver.name}}
@@ -13,8 +27,7 @@
                 <a class="btn" ng-click="remove(driver, $index)">Remove</a>
             </li>
         </ul>
-        <a class="btn btn-primary" ng-click="export()">Export unchecked drivers</a>
-        <a class="btn btn-primary" ng-click="import()">Import results from background check</a>
+
     </div>
     <div  ng-show="drivers.length == 0">
         <h1>No drivers. </br><small>You might want to <a href="#/new-driver">add some</a>.</small></h1>
