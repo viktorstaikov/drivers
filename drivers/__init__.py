@@ -5,6 +5,11 @@ from contextlib import closing
 from flask_peewee.db import Database
 from models import Driver
 
+
+if Driver.table_exists() == False:
+    Driver.create_table()
+
+
 # create our little application :)
 app = Flask(__name__)
 app.config.from_object('drivers.config')
