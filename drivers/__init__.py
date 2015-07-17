@@ -1,21 +1,22 @@
 # all the imports
-import sqlite3
-from flask import Flask, request, session, g, abort
-from contextlib import closing
+from flask import Flask
 from flask_peewee.db import Database
-from models import Driver
-
-
-if Driver.table_exists() == False:
-    Driver.create_table()
 
 
 # create our little application :)
 app = Flask(__name__)
 app.config.from_object('drivers.config')
 
+
 # instantiate the db wrapper
 db = Database(app)
+
+
+from models import Driver
+
+
+if Driver.table_exists() == False:
+    Driver.create_table()
 
 
 import drivers.routes

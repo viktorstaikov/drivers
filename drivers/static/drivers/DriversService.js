@@ -10,11 +10,15 @@ angular.module('DrvService', []).factory('DriversService', ['$http', '$q', funct
         update: function (id, driver) {
             return $http.put('/api/driver/' + id + '/', driver);
         },
-        submit: function (driver) {
-            return $http.post('/api/driver/', driver);
-        },
         delete: function (id) {
             return $http.delete('/api/driver/' + id + '/');
+        },
+        register: function (driver) {
+            return $http.post('/api/signup/', driver);
+        },
+        //admin permissions required
+        submit: function (driver) {
+            return $http.post('/api/driver/', driver);
         }
     }
 }]);
