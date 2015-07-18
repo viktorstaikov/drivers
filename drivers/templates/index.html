@@ -14,9 +14,9 @@
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         {% if user %}
-                            <li>Hello {{ user.name }}</li>
+                            <li><a href="#/">Hello {{ user.name }}</a></li>
                             {% if user.is_admin %}
-                                <li><a href="#/">Home</a></li>
+                                <li><a href="#/">Instructions</a></li>
                                 <li><a href="#/new-driver">Add driver</a></li>
                                 <li><a href="#/list-all-drivers">List all drivers</a></li>
                             {% else %}
@@ -25,6 +25,8 @@
                                 <li><a href="{{url_for('auth.logout')}}">Log out</a></li>
                         {% else %}
                             <li><a href="{{ url_for('auth.login') }}?next=#/">Log in</a></li>
+                            <!-- <li><a href="#/login">Log in</a></li> -->
+                            <li><a href="#/signup">Sign up</a></li>
                         {% endif %}
                     </ul>
                 </div>
@@ -46,7 +48,7 @@
     <script src="../static/home/MainCtrl.js"></script>
     <script src="../static/drivers/NewDriverCtrl.js"></script>
     <script src="../static/drivers/ListDriversCtrl.js"></script>
-     <!--services-->
+    <!--services-->
     <script src="../static/drivers/DriversService.js"></script>
     <!--other-->
     <script src="../static/js/appRoutes.js"></script>
