@@ -8,16 +8,20 @@ from datetime import datetime
 import json
 
 
-import pdb
-
-
-ALLOWED_EXTENSIONS = ['csv']
-
-
 class DriverAuth(Auth):
 
     def get_user_model(self):
         return Driver
+
+    def login(self):
+        print('custom auth login')
+        return super(DriverAuth, self).login()
+
+    def get_urls(self):
+        return (
+            ('/logout/', super(DriverAuth, self).logout),
+            ('/login/', self.login),
+        )
 
 
 class DriverResource(RestResource):
@@ -27,18 +31,29 @@ class DriverResource(RestResource):
         return Driver.select().where(Driver.is_admin == False)
 
 
+ALLOWED_EXTENSIONS = ['csv']
+
 auth = DriverAuth(app, db)
 
 public_auth = Authentication(protected_methods=['POST'])
 user_auth = UserAuthentication(auth, protected_methods=['GET', 'PUT', 'DELETE'])
 
-
 # instantiate public api for the data
 api = RestAPI(app, default_auth=user_auth)
-
-
 api.register(Driver, DriverResource)
 api.setup()
+
+
+def allowed_extension(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+
+
+def get_current_user():
+    return auth.get_context_user()['user']
+
+
+def is_current_user_admin():
+    return auth.get_context_user()['user'].is_admin
 
 
 @app.route('/api/signup/', methods=['POST'])
@@ -58,19 +73,17 @@ def register_driver():
 @app.route('/api/me/', methods=['GET'])
 @auth.login_required
 def get_me():
-    current_user = auth.get_context_user()['user']
+    current_user = get_current_user()
     me = current_user.__dict__['_data']
     me['lastmodified'] = me['lastmodified'].isoformat()
     me.pop('password', None)
-    # pdb.set_trace()
     return make_response(json.dumps(me))
 
 
 @app.route('/api/export/driver/', methods=['GET'])
 @auth.login_required
 def export_drivers():
-    current_user = auth.get_context_user()['user']
-    if not current_user.is_admin:
+    if not is_current_user_admin():
         return 401
     drivers = Driver.select(
         Driver.id, Driver.name).dicts().execute().cursor.fetchall()
@@ -86,15 +99,10 @@ def export_drivers():
     return response
 
 
-def allowed_extension(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
-
-
 @app.route('/api/import/driver/', methods=['GET', 'POST'])
 @auth.login_required
 def import_background_checks():
-    current_user = auth.get_context_user()['user']
-    if not current_user.is_admin:
+    if not is_current_user_admin():
         return 401
     f = request.files['file']
     if f and allowed_extension(f.filename):

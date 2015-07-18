@@ -1,5 +1,4 @@
 angular.module('MainCtrl', []).controller('MainController', ['$scope', 'DriversService', function ($scope, DriversService) {
-    $scope.driver = {}
     $scope.statusToText = function () {
         switch ($scope.driver.status) {
         case 1:
@@ -19,8 +18,12 @@ angular.module('MainCtrl', []).controller('MainController', ['$scope', 'DriversS
 
     DriversService.getMe()
         .success(function (user) {
-            $scope.driver = user
-            console.log(user)
+            try {
+                $scope.driver = JSON.parse(user)
+                console.log(user)
+            } catch (err) {
+
+            }
         })
         .error(function () {
             console.log('User has not logged in properly.')
