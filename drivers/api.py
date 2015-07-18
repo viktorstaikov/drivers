@@ -7,6 +7,8 @@ from drivers import app, db
 from datetime import datetime
 import json
 
+import pdb
+
 
 class DriverAuth(Auth):
 
@@ -15,7 +17,18 @@ class DriverAuth(Auth):
 
     def login(self):
         print('custom auth login')
-        return super(DriverAuth, self).login()
+        user = request.get_json()
+        username = str(user['username'])
+        password = str(user['password'])
+        # pdb.set_trace()
+        authenticated_user = self.authenticate(username, password)
+        if authenticated_user:
+            self.login_user(authenticated_user)
+            me = self.get_logged_in_user()
+            return make_response(me.to_JSON())
+        else:
+            return make_response(json.dump({'error': 'Incorrect username or password'}))
+        # return super(DriverAuth, self).login()
 
     def get_urls(self):
         return (
@@ -74,10 +87,8 @@ def register_driver():
 @auth.login_required
 def get_me():
     current_user = get_current_user()
-    me = current_user.__dict__['_data']
-    me['lastmodified'] = me['lastmodified'].isoformat()
-    me.pop('password', None)
-    return make_response(json.dumps(me))
+    me = current_user.to_JSON()
+    return make_response(me)
 
 
 @app.route('/api/export/driver/', methods=['GET'])

@@ -10,9 +10,9 @@ angular.module('appRoutes', [])
 				controller: 'NewDriverController',
 				resolve: {
 					//This function is injected with the AuthService where you'll put your authentication logic
-					'auth': function (DriversService) {
-						return false;
-						// return DriversService.getMe();
+					'auth': function (AuthenticationService) {
+						console.log('restricted area');
+						return AuthenticationService.isAdmin();
 					}
 				}
 			})
@@ -21,15 +21,23 @@ angular.module('appRoutes', [])
 				controller: 'ListDriversController',
 				resolve: {
 					//This function is injected with the AuthService where you'll put your authentication logic
-					'auth': function (DriversService) {
-						return false;
-						// return DriversService.getMe();
+					'auth': function (AuthenticationService) {
+						console.log('restricted area');
+						return AuthenticationService.isAdmin();
 					}
 				}
 			})
 			.when('/signup', {
 				templateUrl: '../static/drivers/new-driver.html',
 				controller: 'NewDriverController'
+			})
+			.when('/login', {
+				templateUrl: '../static/login/login.html',
+				controller: 'LoginController'
+			})
+			.when('/logout', {
+				templateUrl: '../static/logout/logout.html',
+				controller: 'LogoutController'
 			})
 			.otherwise({
 				redirectTo: '/home'
@@ -41,8 +49,7 @@ angular.module('appRoutes', [])
 		$rootScope.$on('$routeChangeError', function (current, previous, rejection, message) {
 
 			if (message === 'Not Authenticated') {
-				$location.path('/login');
-				$location.search('next', previous.$$route.originalPath);
+				$location.path('/home');
 			}
 		})
 	})

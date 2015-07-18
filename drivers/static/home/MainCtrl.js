@@ -1,5 +1,8 @@
-angular.module('MainCtrl', []).controller('MainController', ['$scope', 'DriversService', function ($scope, DriversService) {
+angular.module('MainCtrl', []).controller('MainController', ['$scope', '$route', 'AuthenticationService', function ($scope, $route, AuthenticationService) {
     $scope.statusToText = function () {
+        if (!$scope.driver) {
+            return '';
+        }
         switch ($scope.driver.status) {
         case 1:
             return 'clean';
@@ -16,16 +19,7 @@ angular.module('MainCtrl', []).controller('MainController', ['$scope', 'DriversS
         }
     }
 
-    DriversService.getMe()
-        .success(function (user) {
-            try {
-                $scope.driver = JSON.parse(user)
-                console.log(user)
-            } catch (err) {
 
-            }
-        })
-        .error(function () {
-            console.log('User has not logged in properly.')
-        })
+    $scope.driver = AuthenticationService.getMe()
+        // $route.reload();
 }]);

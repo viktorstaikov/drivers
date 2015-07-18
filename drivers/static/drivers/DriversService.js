@@ -14,9 +14,6 @@ angular.module('DrvService', []).factory('DriversService', ['$http', '$q', funct
         getAll: function () {
             return $http.get('/api/driver/');
         },
-        getMe: function () {
-            return $http.get('/api/me/');
-        },
         update: function (id, driver) {
             return $http.put('/api/driver/' + id + '/', driver);
         },

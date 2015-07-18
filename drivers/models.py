@@ -3,6 +3,7 @@ from peewee import *
 from flask_peewee.auth import BaseUser
 from datetime import datetime
 from drivers import db
+import json
 
 
 class Driver(db.Model, BaseUser):
@@ -25,3 +26,9 @@ class Driver(db.Model, BaseUser):
     # methods
     def check_password(self, password):
         return self.password == password
+
+    def to_JSON(self):
+        d = self.__dict__['_data']
+        d['lastmodified'] = d['lastmodified'].isoformat()
+        d.pop('password', None)
+        return json.dumps(d)

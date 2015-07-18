@@ -3,9 +3,12 @@ angular.module('app', [
     'LocalStorageModule',
 
     'DrvService',
+    'AuthService',
 
     'appRoutes',
     'MainCtrl',
     'NewDriverCtrl',
-    'ListDriversCtrl'
+    'ListDriversCtrl',
+    'LoginCtrl',
+    'LogoutCtrl'
 ]);

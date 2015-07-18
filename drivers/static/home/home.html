@@ -1,5 +1,5 @@
 <div class="col-sm-8 col-sm-offset-2">
-    <div class="panel panel-default" ng-hide="driver">
+    <div class="panel panel-default" ng-show="!driver || driver.is_admin">
         <div class="panel-heading">
             <h1>Drivers Background Check system</h1>
         </div>
@@ -16,7 +16,7 @@
         </ul>
     </div>
 
-    <div ng-show="driver" class="panel panel-default">
+    <div ng-show="driver && !driver.is_admin" class="panel panel-default">
         <div class="panel-heading">
             <h2>Personal info</h2>
         </div>

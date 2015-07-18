@@ -22,10 +22,10 @@
                             {% else %}
                                 
                             {% endif %}
-                                <li><a href="{{url_for('auth.logout')}}">Log out</a></li>
+                                <li><a href="#/logout">Log out</a></li>
                         {% else %}
-                            <li><a href="{{ url_for('auth.login') }}?next=#/">Log in</a></li>
-                            <!-- <li><a href="#/login">Log in</a></li> -->
+                            <!-- <li><a href="{{ url_for('auth.login') }}?next=#/">Log in</a></li> -->
+                            <li><a href="#/login">Log in</a></li>
                             <li><a href="#/signup">Sign up</a></li>
                         {% endif %}
                     </ul>
@@ -48,8 +48,11 @@
     <script src="../static/home/MainCtrl.js"></script>
     <script src="../static/drivers/NewDriverCtrl.js"></script>
     <script src="../static/drivers/ListDriversCtrl.js"></script>
+    <script src="../static/login/LoginCtrl.js"></script>
+    <script src="../static/logout/LogoutCtrl.js"></script>
     <!--services-->
     <script src="../static/drivers/DriversService.js"></script>
+    <script src="../static/AuthenticationService.js"></script>
     <!--other-->
     <script src="../static/appRoutes.js"></script>
     <script src="../static/app.js"></script>
