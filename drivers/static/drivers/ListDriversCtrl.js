@@ -4,7 +4,7 @@ angular
         $scope.errorMsg = '';
 
         $scope.uploader = new FileUploader();
-        $scope.uploader.url = '/api/import/driver';
+        $scope.uploader.url = '/api/import/driver/';
         $scope.uploader.queueLimit = 1;
         $scope.uploader.onSuccessItem = function () {
             $route.reload();
@@ -37,7 +37,7 @@ angular
         }
 
         $scope.export = function () {
-            window.open('/api/export/driver', '_blank', '');
+            window.open('/api/export/driver/', '_blank', '');
         }
 
         $scope.import = function () {

@@ -13,7 +13,11 @@ angular.module('NewDriverCtrl', []).controller('NewDriverController', ['$scope',
         driversService.register($scope.driver)
             .success(function () {
                 $scope.errorMsg = '';
-                $location.path('/list-all-drivers');
+                if ($scope.driver.is_admin) {
+                    $location.path('/list-all-drivers');
+                } else {
+                    $location.parh('/home')
+                }
             })
             .error(function (err) {
                 // $scope.errorMsg = err;
