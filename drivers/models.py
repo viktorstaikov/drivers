@@ -10,7 +10,7 @@ class Driver(db.Model, BaseUser):
     active = BooleanField(default='True')
     username = CharField(unique=True, null=False)
     password = CharField(null=False)
-    is_admin = BooleanField(default='False')
+    is_admin = BooleanField(default=False)
 
     # custom fields
     name = CharField(unique=True)
