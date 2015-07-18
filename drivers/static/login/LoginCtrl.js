@@ -1,6 +1,6 @@
 angular.module('LoginCtrl', []).controller('LoginController', ['$scope', '$window', '$route', 'AuthenticationService', function ($scope, $window, $route, AuthService) {
 
-    // $scope.errorMsg = '';
+    $scope.errorMsg = '';
 
     $scope.email = '';
     $scope.password = '';
@@ -10,7 +10,7 @@ angular.module('LoginCtrl', []).controller('LoginController', ['$scope', '$windo
             // $location.path(url);
             $window.location.href = '/';
         }, function (err) {
-            // $scope.errorMsg = err;
+            $scope.errorMsg = err.error;
         });
     };
 }]);

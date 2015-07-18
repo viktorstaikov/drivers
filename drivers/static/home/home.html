@@ -4,18 +4,25 @@
             <h1>Drivers Background Check system</h1>
         </div>
         <div class="panel-body">
-            <p>Used technologies: Python, Flask (web framework for Python), Peewee (orm), SQLite (database), AngularJS (fron-end), Bootstrap (styling) and Bower (managing front-end dependencies).</p>
-            <p>This system supports the following operations:</p>
+            <p>You got two options for login: as a Driver or as an Admin.</p>
+            <p>As a Driver you can:</p>
         </div>
         <ul class="list-group">
-            <li class="list-group-item">Adding a new driver.</li>
-            <li class="list-group-item">Listing all drivers in the system with all the information about them, including the status of their background check.</li>
-            <li class="list-group-item">Deleting a certain driver.</li>
-            <li class="list-group-item">Exporting in CSV format the data for 'unchecked' drivers.</li>
-            <li class="list-group-item">Importing in CSV format the data for background checks of drivers. If a driver no longer (or has never existed, but somehow is presented), nothing hapens.</li>
+            <li class="list-group-item list-group-item-info">Register and fill out some info about you.</li>
+            <li class="list-group-item list-group-item-info">Log in and see your information. You will also see the status of your Background check.</li>
+            <li class="list-group-item list-group-item-info">Log out and see a "Bye" message.</li>
+        </ul>
+        <div class="panel-body">
+            <p>The Admin account is a secret, but I'll tell you what you can do with it:</p>
+        </div>
+        <ul class="list-group">
+            <li class="list-group-item list-group-item-info">Adding a new driver.</li>
+            <li class="list-group-item list-group-item-info">Listing all drivers in the system with all the information about them, including the status of their background check.</li>
+            <li class="list-group-item list-group-item-info">Deleting a certain driver.</li>
+            <li class="list-group-item list-group-item-info">Exporting in CSV format the data for 'unchecked' drivers.</li>
+            <li class="list-group-item list-group-item-info">Importing in CSV format the data for background checks of drivers. If a driver no longer (or has never existed, but somehow is presented), nothing hapens.</li>
         </ul>
     </div>
-
     <div ng-show="driver && !driver.is_admin" class="panel panel-default">
         <div class="panel-heading">
             <h2>Personal info</h2>

@@ -27,7 +27,7 @@ class DriverAuth(Auth):
             me = self.get_logged_in_user()
             return make_response(me.to_JSON())
         else:
-            return make_response(json.dumps({'error': 'Incorrect username or password'}))
+            return make_response(json.dumps({'error': 'Incorrect username or password'})), 400
         # return super(DriverAuth, self).login()
 
     def get_urls(self):
