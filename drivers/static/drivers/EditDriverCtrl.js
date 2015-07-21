@@ -2,8 +2,6 @@ angular.module('EditDriverCtrl', []).controller('EditDriverController', ['$scope
     var id = $route.current.params.id;
 
     $scope.update = function () {
-        console.log('updating here');
-        console.log($scope.driver);
 
         driversService.update(id, $scope.driver)
             .success(function () {
@@ -27,5 +25,8 @@ angular.module('EditDriverCtrl', []).controller('EditDriverController', ['$scope
         .success(function (driver) {
             $scope.driver = driver;
             $scope.errorMsg = '';
+        })
+        .error(function () {
+            $scope.errorMsg = 'We have a problem with getting this driver info.'
         });
 }]);
