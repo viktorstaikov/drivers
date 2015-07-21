@@ -16,7 +16,7 @@ angular.module('NewDriverCtrl', []).controller('NewDriverController', ['$scope',
                 if ($scope.driver.is_admin) {
                     $location.path('/list-all-drivers');
                 } else {
-                    $location.parh('/home')
+                    $location.path('/home')
                 }
             })
             .error(function (err) {

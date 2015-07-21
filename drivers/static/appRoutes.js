@@ -1,5 +1,5 @@
 angular.module('appRoutes', [])
-    .config([ '$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+	.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 		$routeProvider
 			.when('/home', {
 				templateUrl: '../static/home/home.html',
@@ -9,7 +9,6 @@ angular.module('appRoutes', [])
 				templateUrl: '../static/drivers/new-driver.html',
 				controller: 'NewDriverController',
 				resolve: {
-					//This function is injected with the AuthService where you'll put your authentication logic
 					'auth': function (AuthenticationService) {
 						console.log('restricted area');
 						return AuthenticationService.isAdmin();
@@ -20,14 +19,13 @@ angular.module('appRoutes', [])
 				templateUrl: '../static/drivers/list-all-drivers.html',
 				controller: 'ListDriversController',
 				resolve: {
-					//This function is injected with the AuthService where you'll put your authentication logic
 					'auth': function (AuthenticationService) {
 						console.log('restricted area');
 						return AuthenticationService.isAdmin();
 					}
 				}
 			})
-	.when('/edit-driver', {
+			.when('/edit-driver/:id', {
 				templateUrl: '../static/drivers/edit-driver.html',
 				controller: 'EditDriverController',
 				resolve: {
@@ -54,12 +52,13 @@ angular.module('appRoutes', [])
 				redirectTo: '/home'
 			});
 
-        //$locationProvider.html5Mode(true); // fix url to not contain '#'
-    } ])
-    .run(function($rootScope, $location) {
+		//$locationProvider.html5Mode(true); // fix url to not contain '#'
+	}])
+	.run(function ($rootScope, $location) {
 		$rootScope.$on('$routeChangeError', function (current, previous, rejection, message) {
 			console.log(arguments)
 			if (message === 'Not Authenticated') {
 				$location.path('/home');
 			}
-		}) })
+		})
+	})

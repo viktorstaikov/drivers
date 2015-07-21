@@ -1,26 +1,31 @@
-angular.module('EditDriverCtrl', []).controller('EditDriverController', ['$scope', '$location', 'DriversService', function ($scope, $location, driversService) {
-    $scope.driver = {
-        // initialize the not required fields
-        telnumber: '',
-        address: '',
-        car: ''
-    }
-    $scope.errorMsg = '';
+angular.module('EditDriverCtrl', []).controller('EditDriverController', ['$scope', '$location', '$route', 'DriversService', function ($scope, $location, $route, driversService) {
+    var id = $route.current.params.id;
 
-    $scope.submit = function () {
-        $scope.driver.username = $scope.driver.email;
+    $scope.update = function () {
+        console.log('updating here');
+        console.log($scope.driver);
 
-        driversService.register($scope.driver)
+        driversService.update(id, $scope.driver)
             .success(function () {
                 $scope.errorMsg = '';
-                if ($scope.driver.is_admin) {
-                    $location.path('/list-all-drivers');
-                } else {
-                    $location.parh('/home')
-                }
+                $location.path('/list-all-drivers');
             })
             .error(function (err) {
                 $scope.errorMsg = err.error;
             });
     };
+
+    $scope.log = function () {
+        console.log($scope.driver);
+    }
+    $scope.forceapply = function () {
+        $scope.$apply();
+    }
+
+    $scope.driver = {};
+    driversService.get(id)
+        .success(function (driver) {
+            $scope.driver = driver;
+            $scope.errorMsg = '';
+        });
 }]);
