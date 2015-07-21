@@ -17,6 +17,8 @@ from models import Driver
 
 if Driver.table_exists() == False:
     Driver.create_table()
+    Driver.create(username='admin@admin.com', email='admin@admin.com',
+                  password='admin', is_admin=True, name='Admin')
 
 
 import drivers.routes

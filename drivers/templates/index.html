@@ -16,13 +16,13 @@
                         {% if user %}
                             <li><a href="#/">Hello {{ user.name }}</a></li>
                             {% if user.is_admin %}
-                                <li><a href="#/">Instructions</a></li>
                                 <li><a href="#/new-driver">Add driver</a></li>
                                 <li><a href="#/list-all-drivers">List all drivers</a></li>
                             {% else %}
                                 
                             {% endif %}
                                 <li><a href="#/logout">Log out</a></li>
+                                <!-- <li><a href="{{url_for('auth.logout')}}">Log out</a></li> -->
                         {% else %}
                             <!-- <li><a href="{{ url_for('auth.login') }}?next=#/">Log in</a></li> -->
                             <li><a href="#/login">Log in</a></li>
@@ -50,6 +50,7 @@
     <script src="../static/drivers/ListDriversCtrl.js"></script>
     <script src="../static/login/LoginCtrl.js"></script>
     <script src="../static/logout/LogoutCtrl.js"></script>
+    <script src="../static/drivers/EditDriverCtrl.js"></script>
     <!--services-->
     <script src="../static/drivers/DriversService.js"></script>
     <script src="../static/AuthenticationService.js"></script>

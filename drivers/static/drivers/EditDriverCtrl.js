@@ -1,4 +1,4 @@
-angular.module('NewDriverCtrl', []).controller('NewDriverController', ['$scope', '$location', 'DriversService', function ($scope, $location, driversService) {
+angular.module('EditDriverCtrl', []).controller('EditDriverController', ['$scope', '$location', 'DriversService', function ($scope, $location, driversService) {
     $scope.driver = {
         // initialize the not required fields
         telnumber: '',

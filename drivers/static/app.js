@@ -10,5 +10,6 @@ angular.module('app', [
     'NewDriverCtrl',
     'ListDriversCtrl',
     'LoginCtrl',
-    'LogoutCtrl'
+    'LogoutCtrl',
+    'EditDriverCtrl'
 ]);

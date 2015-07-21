@@ -1,7 +1,7 @@
 <div class="col-sm-6 col-sm-offset-3">
     <h1>New driver</h1>
     <form name="newDriverForm" ng-controller="NewDriverController" ng-submit="submit()">
-        <span class="error" ng-show="errorMsg">{{errorMsg}}</span>
+        <div class="alert alert-warning" role="alert" ng-show="errorMsg">{{errorMsg}}</div>
         <div class="form-group">
             <label>Email (cannot be changed later on)</label>
             <input type="email" ng-model="driver.email" required class="form-control" name="email">

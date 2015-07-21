@@ -25,15 +25,20 @@ angular
                         error(data);
                     });
             },
-            logout: function () {
-                $http.get('/accounts/logout/');
-                setUser(null);
+            logout: function (done) {
+                $http
+                    .get('/accounts/logout/')
+                    .success(function () {
+                        setUser(null);
+                        done();
+                    });
             },
             getMe: function () {
                 return getUser();
             },
             isAdmin: function () {
-                if (getUser().is_admin == false) {
+                var user = getUser();
+                if (!user || user.is_admin == false) {
                     return q.reject('Not Authenticated');
                 }
                 return true;

@@ -8,7 +8,7 @@ import json
 
 class Driver(db.Model, BaseUser):
     # for auth purpose
-    active = BooleanField(default='True')
+    active = BooleanField(default=True)
     username = CharField(unique=True, null=False)
     password = CharField(null=False)
     is_admin = BooleanField(default=False)

@@ -1,5 +1,5 @@
 angular.module('appRoutes', [])
-	.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+    .config([ '$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 		$routeProvider
 			.when('/home', {
 				templateUrl: '../static/home/home.html',
@@ -27,6 +27,17 @@ angular.module('appRoutes', [])
 					}
 				}
 			})
+	.when('/edit-driver', {
+				templateUrl: '../static/drivers/edit-driver.html',
+				controller: 'EditDriverController',
+				resolve: {
+					//This function is injected with the AuthService where you'll put your authentication logic
+					'auth': function (AuthenticationService) {
+						console.log('restricted area');
+						return AuthenticationService.isAdmin();
+					}
+				}
+			})
 			.when('/signup', {
 				templateUrl: '../static/drivers/new-driver.html',
 				controller: 'NewDriverController'
@@ -43,13 +54,12 @@ angular.module('appRoutes', [])
 				redirectTo: '/home'
 			});
 
-		//$locationProvider.html5Mode(true); // fix url to not contain '#'
-	}])
-	.run(function ($rootScope, $location) {
+        //$locationProvider.html5Mode(true); // fix url to not contain '#'
+    } ])
+    .run(function($rootScope, $location) {
 		$rootScope.$on('$routeChangeError', function (current, previous, rejection, message) {
-
+			console.log(arguments)
 			if (message === 'Not Authenticated') {
 				$location.path('/home');
 			}
-		})
-	})
+		}) })
